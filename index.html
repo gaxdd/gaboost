@@ -1,223 +1,218 @@
-<!-- GABOOST - versão visual gamer + cartoon -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <title>GABOOST - Elojob League of Legends</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- Fonte gamer -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>GABOOST - Elojob Solo</title>
 
   <style>
     body {
       margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: url('https://ddragon.leagueoflegends.com/cdn/img/champion/splash/KogMaw_0.jpg') no-repeat center center fixed;
+      font-family: Arial, sans-serif;
+      background: url("https://ddragon.leagueoflegends.com/cdn/img/champion/splash/KogMaw_0.jpg") no-repeat center center fixed;
       background-size: cover;
-      color: #fff;
-    }
-
-    .overlay {
-      background: rgba(10, 15, 30, 0.85);
-      min-height: 100vh;
       display: flex;
-      align-items: center;
       justify-content: center;
-      padding: 20px;
+      align-items: center;
+      min-height: 100vh;
     }
 
     .card {
-      background: linear-gradient(135deg, #0f1c3f, #1a2d6d);
-      border-radius: 20px;
-      padding: 30px;
-      max-width: 420px;
-      width: 100%;
-      box-shadow: 0 0 25px rgba(0, 162, 255, 0.6);
+      background: rgba(10, 20, 60, 0.95);
+      padding: 25px;
+      border-radius: 16px;
+      width: 340px;
+      color: #fff;
+      box-shadow: 0 0 25px rgba(0,255,255,0.4);
     }
 
     h1 {
       text-align: center;
-      font-weight: 800;
-      color: #f5c97a;
-      margin-bottom: 10px;
+      color: #ffd166;
+      margin-bottom: 5px;
     }
 
-    p {
+    p.sub {
       text-align: center;
       font-size: 14px;
-      opacity: 0.9;
+      margin-bottom: 20px;
+      color: #cde;
     }
 
     label {
       font-size: 14px;
-      margin-top: 15px;
+      margin-top: 10px;
       display: block;
     }
 
     select {
       width: 100%;
       padding: 10px;
-      margin-top: 5px;
-      border-radius: 10px;
+      border-radius: 8px;
       border: none;
+      margin-top: 5px;
       font-size: 14px;
     }
 
     button {
       width: 100%;
-      margin-top: 20px;
-      padding: 15px;
+      margin-top: 18px;
+      padding: 12px;
+      background: #00b4ff;
       border: none;
-      border-radius: 15px;
-      font-size: 18px;
-      font-weight: 700;
-      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
       color: #fff;
       cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
     }
 
     button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px #00c6ff;
+      background: #0095d9;
     }
 
-    .price {
-      margin-top: 15px;
+    .preco {
       text-align: center;
-      font-size: 22px;
-      font-weight: 700;
+      font-size: 20px;
+      margin-top: 15px;
       color: #00ffcc;
+      font-weight: bold;
     }
 
-    .whatsapp {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #25D366;
-      color: #fff;
-      padding: 15px 20px;
-      border-radius: 50px;
-      font-weight: 700;
-      text-decoration: none;
-      box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    .tabela {
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .tabela h3 {
+      text-align: center;
+      color: #ffd166;
+      margin-bottom: 8px;
+    }
+
+    .tabela small {
+      display: block;
+      text-align: center;
+      margin-bottom: 10px;
+      color: #aad;
+    }
+
+    .linha {
+      display: flex;
+      justify-content: space-between;
+      margin: 4px 0;
     }
   </style>
 </head>
+
 <body>
 
-<div class="overlay">
-  <div class="card">
-    <h1>GABOOST</h1>
-    <p>Elojob Solo Queue • Seguro • Rápido</p>
+<div class="card">
+  <h1>GABOOST</h1>
+  <p class="sub">Elojob Solo Queue • Seguro • Rápido</p>
 
-    <label>Elo atual</label>
-    <select id="eloAtual">
-      <option value="1">Ferro</option>
-      <option value="2">Bronze</option>
-      <option value="3">Prata</option>
-      <option value="4">Ouro</option>
-      <option value="5">Platina</option>
-      <option value="6">Esmeralda</option>
-    </select>
+  <label>Elo atual</label>
+  <select id="eloAtual">
+    <option>Ferro</option>
+    <option>Bronze</option>
+    <option>Prata</option>
+    <option>Ouro</option>
+    <option>Platina</option>
+  </select>
 
-    <label>Divisão atual</label>
-    <select id="divAtual">
-      <option value="4">IV</option>
-      <option value="3">III</option>
-      <option value="2">II</option>
-      <option value="1">I</option>
-    </select>
+  <label>Divisão atual</label>
+  <select id="divAtual">
+    <option value="4">IV</option>
+    <option value="3">III</option>
+    <option value="2">II</option>
+    <option value="1">I</option>
+  </select>
 
-    <label>Elo desejado</label>
-    <select id="eloDesejado" onchange="ajustarDivEsmeralda()">
-  <option value="2">Bronze</option>
-  <option value="3">Prata</option>
-  <option value="4">Ouro</option>
-  <option value="5">Platina</option>
-  <option value="6">Esmeralda</option>
-</select>
+  <label>Elo desejado</label>
+  <select id="eloDesejado" onchange="travarEsmeralda()">
+    <option>Bronze</option>
+    <option>Prata</option>
+    <option>Ouro</option>
+    <option>Platina</option>
+    <option>Esmeralda</option>
+  </select>
 
-    <label>Divisão desejada</label>
-    <select id="divDesejada">
-      <option value="4">IV</option>
-      <option value="3">III</option>
-      <option value="2">II</option>
-      <option value="1">I</option>
-    </select>
+  <label>Divisão desejada</label>
+  <select id="divDesejada">
+    <option value="4">IV</option>
+    <option value="3">III</option>
+    <option value="2">II</option>
+    <option value="1">I</option>
+  </select>
 
-    <button onclick="calcular()">Calcular preço</button>
-    <div class="price" id="resultado"></div>
+  <button onclick="calcularPreco()">Calcular preço</button>
 
-    <div style="margin-top:20px;font-size:14px;text-align:center;">
-      <h3 style="margin-bottom:10px;color:#f5c97a;">Tabela de preços GABOOST (por divisão)</h3>
-<p style="font-size:12px;opacity:0.9;margin-bottom:10px;">💡 O valor final é calculado somando cada divisão vencida, do elo atual até o elo desejado.</p>
-      <table style="width:100%;border-collapse:collapse;">
-        <tr><td>Ferro</td><td>R$ 5 por divisão</td></tr>
-        <tr><td>Bronze</td><td>R$ 6 por divisão</td></tr>
-        <tr><td>Prata</td><td>R$ 7 por divisão</td></tr>
-        <tr><td>Ouro</td><td>R$ 9 por divisão</td></tr>
-        <tr><td>Platina</td><td>R$ 12 por divisão</td></tr>
-        <tr><td>Esmeralda</td><td>R$ 15 por divisão</td></tr>
-      </table>
-    </div>
+  <div class="preco" id="resultado">Preço: R$ 0,00</div>
+
+  <div class="tabela">
+    <h3>Tabela de preços GABOOST</h3>
+    <small>Valores cobrados por divisão vencida</small>
+
+    <div class="linha"><span>Ferro</span><span>R$ 5</span></div>
+    <div class="linha"><span>Bronze</span><span>R$ 6</span></div>
+    <div class="linha"><span>Prata</span><span>R$ 7</span></div>
+    <div class="linha"><span>Ouro</span><span>R$ 9</span></div>
+    <div class="linha"><span>Platina</span><span>R$ 12</span></div>
+    <div class="linha"><span>Esmeralda</span><span>R$ 15</span></div>
   </div>
 </div>
 
-<a class="whatsapp" href="https://wa.me/5519996898928" target="_blank">WhatsApp</a>
-
 <script>
-function ajustarDivEsmeralda() {
-  const eloDesejado = document.getElementById('eloDesejado').value;
-  const divDesejada = document.getElementById('divDesejada');
+const precos = {
+  Ferro: 5,
+  Bronze: 6,
+  Prata: 7,
+  Ouro: 9,
+  Platina: 12,
+  Esmeralda: 15
+};
 
-  if (eloDesejado === '6') {
-    divDesejada.value = '4';
+const elos = ["Ferro", "Bronze", "Prata", "Ouro", "Platina", "Esmeralda"];
+
+function travarEsmeralda() {
+  const eloDesejado = document.getElementById("eloDesejado").value;
+  const divDesejada = document.getElementById("divDesejada");
+
+  if (eloDesejado === "Esmeralda") {
+    divDesejada.value = "4";
     divDesejada.disabled = true;
   } else {
     divDesejada.disabled = false;
   }
 }
 
-function calcular() {) {
-  const eloAtual = parseInt(document.getElementById('eloAtual').value);
-  const divAtual = parseInt(document.getElementById('divAtual').value);
-  const eloDesejado = parseInt(document.getElementById('eloDesejado').value);
-  const divDesejada = parseInt(document.getElementById('divDesejada').value);
+function calcularPreco() {
+  const eloAtual = document.getElementById("eloAtual").value;
+  const divAtual = parseInt(document.getElementById("divAtual").value);
 
-  // preço por DIVISÃO
-  const precoDivisao = {
-    1: 5,  // Ferro
-    2: 6,  // Bronze
-    3: 7,  // Prata
-    4: 9,  // Ouro
-    5: 12, // Platina
-    6: 15  // Esmeralda
-  };
-
-  const pontosAtual = (eloAtual - 1) * 4 + (4 - divAtual);
-  const pontosDesejado = (eloDesejado - 1) * 4 + (4 - divDesejada);
-
-  if (pontosDesejado <= pontosAtual) {
-    document.getElementById('resultado').innerText = 'Seleção inválida';
-    return;
-  }
+  const eloDesejado = document.getElementById("eloDesejado").value;
+  const divDesejada = parseInt(document.getElementById("divDesejada").value);
 
   let total = 0;
 
-  for (let p = pontosAtual; p < pontosDesejado; p++) {
-    const eloBase = Math.floor(p / 4) + 1;
-    total += precoDivisao[eloBase];
+  let inicio = elos.indexOf(eloAtual);
+  let fim = elos.indexOf(eloDesejado);
+
+  if (fim < inicio) {
+    alert("O elo desejado deve ser maior que o atual");
+    return;
   }
 
-  document.getElementById('resultado').innerText = `Preço: R$ ${total},00`;
-}
+  for (let i = inicio; i <= fim; i++) {
+    let divs = 4;
 
-  const diferenca = pontosDesejado - pontosAtual;
-  const preco = diferenca * 35;
+    if (i === inicio) divs = divAtual;
+    if (i === fim) divs = divDesejada;
 
-  document.getElementById('resultado').innerText = `Preço: R$ ${preco},00`;
+    total += divs * precos[elos[i]];
+  }
+
+  document.getElementById("resultado").innerText =
+    "Preço: R$ " + total.toFixed(2).replace(".", ",");
 }
 </script>
 
