@@ -86,6 +86,12 @@ button{
   cursor:pointer;
 }
 
+button:hover{
+  background:linear-gradient(90deg,#0072ff,#00c6ff);
+  transform:scale(1.05);
+  transition:0.3s;
+}
+
 .price{
   margin-top:15px;
   text-align:center;
@@ -115,7 +121,8 @@ button{
 .table div{
   display:flex;
   justify-content:space-between;
-  padding:3px 0;
+  padding:5px 10px;
+  border-bottom:1px solid rgba(255,255,255,0.2);
 }
 
 .whatsapp{
@@ -216,13 +223,24 @@ function calcular(){
   let eloAtual = document.getElementById("eloAtual").value;
   let divAtual = parseInt(document.getElementById("divAtual").value);
   let eloDesejado = document.getElementById("eloDesejado").value;
+  let divDesejada = parseInt(document.getElementById("divDesejada").value);
+
+  if(ordem.indexOf(eloDesejado) < ordem.indexOf(eloAtual) ||
+     (eloAtual === eloDesejado && divDesejada > divAtual)) {
+    alert("Seleção inválida: o elo desejado não pode ser menor que o atual.");
+    return;
+  }
 
   let total = 0;
 
-  for(let i = ordem.indexOf(eloAtual); i < ordem.indexOf(eloDesejado); i++){
+  for(let i = ordem.indexOf(eloAtual); i <= ordem.indexOf(eloDesejado); i++){
     let elo = ordem[i];
-    let divs = (elo === eloAtual) ? divAtual : 4;
-    total += divs * precos[elo];
+    let inicioDiv = (i === ordem.indexOf(eloAtual)) ? divAtual : 4;
+    let fimDiv = (i === ordem.indexOf(eloDesejado)) ? divDesejada : 1;
+
+    for(let d = inicioDiv; d >= fimDiv; d--){
+      total += precos[elo];
+    }
   }
 
   document.getElementById("resultado").innerText =
