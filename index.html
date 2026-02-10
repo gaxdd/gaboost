@@ -1,164 +1,175 @@
+<!-- GABOOST - versão visual gamer + cartoon -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
+  <title>GABOOST - Elojob League of Legends</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GABOOST | Elo Job do Ferro ao Esmeralda</title>
+
+  <!-- Fonte gamer -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+
   <style>
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #0f172a;
-      color: #e5e7eb;
+      font-family: 'Poppins', sans-serif;
+      background: url('https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Jinx_0.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
     }
-    header {
-      background: linear-gradient(135deg, #7c3aed, #2563eb);
-      padding: 40px 20px;
+
+    .overlay {
+      background: rgba(10, 15, 30, 0.85);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .card {
+      background: linear-gradient(135deg, #0f1c3f, #1a2d6d);
+      border-radius: 20px;
+      padding: 30px;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: 0 0 25px rgba(0, 162, 255, 0.6);
+    }
+
+    h1 {
       text-align: center;
-    }
-    header h1 {
-      font-size: 3rem;
+      font-weight: 800;
+      color: #f5c97a;
       margin-bottom: 10px;
     }
-    header p {
-      font-size: 1.2rem;
-    }
-    .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 40px 20px;
-    }
-    .card {
-      background: #020617;
-      border-radius: 12px;
-      padding: 25px;
-      margin-bottom: 30px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.4);
-    }
-    h2 {
-      color: #a78bfa;
-      margin-bottom: 15px;
-    }
-    label {
-      display: block;
-      margin-top: 15px;
-      margin-bottom: 5px;
-    }
-    select, button {
-      width: 100%;
-      padding: 12px;
-      border-radius: 8px;
-      border: none;
-      font-size: 1rem;
-    }
-    select {
-      background: #020617;
-      color: #e5e7eb;
-      border: 1px solid #334155;
-    }
-    button {
-      margin-top: 20px;
-      background: #7c3aed;
-      color: white;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    button:hover {
-      background: #6d28d9;
-    }
-    .benefits {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-    }
-    footer {
-      background: #020617;
+
+    p {
       text-align: center;
-      padding: 20px;
-      font-size: 0.9rem;
-      color: #94a3b8;
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    label {
+      font-size: 14px;
+      margin-top: 15px;
+      display: block;
+    }
+
+    select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 10px;
+      border: none;
+      font-size: 14px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 15px;
+      border: none;
+      border-radius: 15px;
+      font-size: 18px;
+      font-weight: 700;
+      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      color: #fff;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #00c6ff;
+    }
+
+    .price {
+      margin-top: 15px;
+      text-align: center;
+      font-size: 22px;
+      font-weight: 700;
+      color: #00ffcc;
+    }
+
+    .whatsapp {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25D366;
+      color: #fff;
+      padding: 15px 20px;
+      border-radius: 50px;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 0 15px rgba(0,0,0,0.4);
     }
   </style>
 </head>
 <body>
 
-  <header>
+<div class="overlay">
+  <div class="card">
     <h1>GABOOST</h1>
-    <p>Elo Job profissional — do Ferro ao Esmeralda</p>
-  </header>
+    <p>Elojob Solo Queue • Seguro • Rápido</p>
 
-  <div class="container">
+    <label>Elo atual</label>
+    <select id="eloAtual">
+      <option value="1">Ferro</option>
+      <option value="2">Bronze</option>
+      <option value="3">Prata</option>
+      <option value="4">Ouro</option>
+      <option value="5">Platina</option>
+      <option value="6">Esmeralda</option>
+    </select>
 
-    <div class="card">
-      <h2>Tabela de Preços — Elo Job SOLO</h2>
-      <p>Valores por divisão (mais baratos que a média do mercado):</p>
-      <table style="width:100%;border-collapse:collapse;">
-        <tr><th style="text-align:left;padding:8px;border-bottom:1px solid #334155;">Elo</th><th style="text-align:right;padding:8px;border-bottom:1px solid #334155;">Preço</th></tr>
-        <tr><td style="padding:8px;">Ferro</td><td style="padding:8px;text-align:right;">R$ 5</td></tr>
-        <tr><td style="padding:8px;">Bronze</td><td style="padding:8px;text-align:right;">R$ 6</td></tr>
-        <tr><td style="padding:8px;">Prata</td><td style="padding:8px;text-align:right;">R$ 7</td></tr>
-        <tr><td style="padding:8px;">Ouro</td><td style="padding:8px;text-align:right;">R$ 9</td></tr>
-        <tr><td style="padding:8px;">Platina</td><td style="padding:8px;text-align:right;">R$ 12</td></tr>
-        <tr><td style="padding:8px;">Esmeralda</td><td style="padding:8px;text-align:right;">R$ 15</td></tr>
-      </table>
-      <p style="margin-top:10px;color:#94a3b8;">* Preços base por divisão. Orçamento final confirmado via WhatsApp.</p>
-    </div>
+    <label>Divisão atual</label>
+    <select id="divAtual">
+      <option value="4">IV</option>
+      <option value="3">III</option>
+      <option value="2">II</option>
+      <option value="1">I</option>
+    </select>
 
+    <label>Elo desejado</label>
+    <select id="eloDesejado">
+      <option value="2">Bronze</option>
+      <option value="3">Prata</option>
+      <option value="4">Ouro</option>
+      <option value="5">Platina</option>
+      <option value="6">Esmeralda</option>
+    </select>
 
-    <div class="card">
-      <h2>Calcule seu Elo Job</h2>
-      <label>Elo Atual</label>
-      <select>
-        <option>Ferro</option>
-        <option>Bronze</option>
-        <option>Prata</option>
-        <option>Ouro</option>
-        <option>Platina</option>
-        <option>Esmeralda</option>
-      </select>
+    <label>Divisão desejada</label>
+    <select id="divDesejada">
+      <option value="4">IV</option>
+      <option value="3">III</option>
+      <option value="2">II</option>
+      <option value="1">I</option>
+    </select>
 
-      <label>Elo Desejado</label>
-      <select>
-        <option>Bronze</option>
-        <option>Prata</option>
-        <option>Ouro</option>
-        <option>Platina</option>
-        <option>Esmeralda</option>
-      </select>
-
-      <label>Tipo de Serviço</label>
-      <select>
-        <option>Elo Job (Solo)</option>
-      </select>
-
-      <button>Calcular Preço</button>
-      <a href="https://wa.me/5519996898928?text=Olá%2C%20vim%20pelo%20site%20GABOOST.%20Quero%20Elo%20Job%20SOLO%20do%20meu%20elo%20atual%20para%20o%20elo%20desejado." target="_blank" style="display:block;text-align:center;margin-top:15px;padding:12px;border-radius:8px;background:#22c55e;color:#fff;text-decoration:none;font-weight:bold;">📲 Falar no WhatsApp</a>
-    </div>
-
-    <div class="card">
-      <h2>Por que escolher a GABOOST?</h2>
-      <div class="benefits">
-        <div>🔥 Boosters experientes</div>
-        <div>🔒 Segurança total da conta</div>
-        <div>⚡ Rapidez na entrega</div>
-        <div>🎧 Suporte direto via WhatsApp / Discord</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <h2>Aviso Importante</h2>
-      <p>
-        O serviço de Elo Job pode violar os Termos de Uso da Riot Games. Ao contratar,
-        o cliente assume todos os riscos relacionados à conta.
-      </p>
-    </div>
-
+    <button onclick="calcular()">Calcular preço</button>
+    <div class="price" id="resultado"></div>
   </div>
+</div>
 
-  <footer>
-    © 2026 GABOOST — Todos os direitos reservados
-  </footer>
+<a class="whatsapp" href="https://wa.me/5519996898928" target="_blank">WhatsApp</a>
 
-  <a href="https://wa.me/5519996898928?text=Olá%2C%20vim%20pelo%20site%20GABOOST.%20Quero%20Elo%20Job%20SOLO%20do%20meu%20elo%20atual%20para%20o%20elo%20desejado." target="_blank" style="position:fixed;right:20px;bottom:20px;background:#22c55e;color:#fff;padding:14px 16px;border-radius:999px;text-decoration:none;font-weight:bold;box-shadow:0 10px 30px rgba(0,0,0,.4);">💬 WhatsApp</a>
-</body>
-</html>
+<script>
+function calcular() {
+  const eloAtual = parseInt(document.getElementById('eloAtual').value);
+  const divAtual = parseInt(document.getElementById('divAtual').value);
+  const eloDesejado = parseInt(document.getElementById('eloDesejado').value);
+  const divDesejada = parseInt(document.getElementById('divDesejada').value);
+
+  const pontosAtual = eloAtual * 4 - divAtual;
+  const pontosDesejado = eloDesejado * 4 - divDesejada;
+
+  if (pontosDesejado <= pontosAtual) {
+    document.getElementById('resultado').innerText = 'Elo inválido';
+    return;
+  }
+
+  const diferenca = pontosDesejado - pontosAtual;
+  const preco = diferenca * 35;
+
+  document.getElementById('resultado').innerText = `Preço: R$ ${preco},
