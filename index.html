@@ -7,7 +7,6 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
 
-<!-- Favicon League of Legends -->
 <link rel="icon" href="https://static.wikia.nocookie.net/leagueoflegends/images/3/3d/League_of_Legends_icon.png" type="image/png">
 
 <style>
@@ -20,7 +19,7 @@ body{
 }
 
 .overlay{
-  background:rgba(8,12,30,.85);
+  background: rgba(0,0,0,0.5);
   min-height:100vh;
   display:flex;
   align-items:center;
@@ -29,12 +28,13 @@ body{
 }
 
 .card{
-  background:linear-gradient(135deg,#0a1b4d,#122b7a);
-  border-radius:20px;
+  background: rgba(8,12,30,0.85);
+  border-radius:25px;
   padding:30px;
   width:100%;
-  max-width:420px;
+  max-width:440px;
   box-shadow:0 0 25px rgba(0,200,255,.6);
+  backdrop-filter: blur(5px);
 }
 
 .logo{
@@ -90,27 +90,36 @@ button{
   border-radius:14px;
   font-size:18px;
   font-weight:700;
-  background:linear-gradient(90deg,#00c6ff,#0072ff);
+  background: linear-gradient(90deg,#00c6ff,#0072ff);
   color:#fff;
   cursor:pointer;
+  transition: 0.3s;
 }
-
 button:hover{
-  background:linear-gradient(90deg,#0072ff,#00c6ff);
-  transform:scale(1.05);
-  transition:0.3s;
+  background: linear-gradient(90deg,#0072ff,#00c6ff);
+  box-shadow: 0 0 20px #00c6ff;
+  transform: scale(1.05);
 }
 
 .price{
-  margin-top:15px;
+  margin-top:20px;
   text-align:center;
-  font-size:22px;
-  font-weight:700;
+  font-size:26px;
+  font-weight:800;
   color:#00ffcc;
+  background: rgba(0,0,0,0.3);
+  padding:12px 0;
+  border-radius:15px;
+  box-shadow: 0 0 15px rgba(0,255,200,0.5);
+  transition: all 0.3s ease;
+}
+
+.price.change {
+  transform: scale(1.05);
 }
 
 .table{
-  margin-top:20px;
+  margin-top:25px;
   font-size:14px;
 }
 
@@ -131,8 +140,16 @@ button:hover{
   display:flex;
   justify-content:space-between;
   padding:5px 10px;
-  border-bottom:1px solid rgba(255,255,255,0.2);
+  border-radius:8px;
+  margin-bottom:5px;
 }
+
+.table .Ferro { background: rgba(128,128,128,0.3); }
+.table .Bronze { background: rgba(205,127,50,0.3); }
+.table .Prata { background: rgba(192,192,192,0.3); }
+.table .Ouro { background: rgba(255,215,0,0.3); }
+.table .Platina { background: rgba(0,255,255,0.3); }
+.table .Esmeralda { background: rgba(0,128,0,0.3); }
 
 .whatsapp{
   position:fixed;
@@ -203,12 +220,12 @@ button:hover{
       <h3>Tabela de preços GABOOST</h3>
       <small>Valores cobrados por divisão vencida</small>
 
-      <div><span>Ferro</span><span>R$ 5</span></div>
-      <div><span>Bronze</span><span>R$ 6</span></div>
-      <div><span>Prata</span><span>R$ 7</span></div>
-      <div><span>Ouro</span><span>R$ 9</span></div>
-      <div><span>Platina</span><span>R$ 12</span></div>
-      <div><span>Esmeralda</span><span>R$ 15</span></div>
+      <div class="Ferro"><span>Ferro</span><span>R$ 5</span></div>
+      <div class="Bronze"><span>Bronze</span><span>R$ 6</span></div>
+      <div class="Prata"><span>Prata</span><span>R$ 7</span></div>
+      <div class="Ouro"><span>Ouro</span><span>R$ 9</span></div>
+      <div class="Platina"><span>Platina</span><span>R$ 12</span></div>
+      <div class="Esmeralda"><span>Esmeralda</span><span>R$ 15</span></div>
     </div>
   </div>
 </div>
@@ -227,7 +244,6 @@ const precos = {
   Esmeralda: 15
 };
 
-// Agora inclui Esmeralda
 const ordem = ["Ferro","Bronze","Prata","Ouro","Platina","Esmeralda"];
 
 function calcular(){
@@ -236,7 +252,6 @@ function calcular(){
   let eloDesejado = document.getElementById("eloDesejado").value;
   let divDesejada = parseInt(document.getElementById("divDesejada").value);
 
-  // Validação básica
   if(ordem.indexOf(eloDesejado) < ordem.indexOf(eloAtual) ||
      (eloAtual === eloDesejado && divDesejada > divAtual)) {
     alert("Seleção inválida: o elo desejado não pode ser menor que o atual.");
@@ -252,21 +267,22 @@ function calcular(){
     let elo = ordem[i];
     let divFinal = (i === eloIndexDesejado) ? divDesejada : 1;
 
-    // Divisões vencidas dentro do mesmo elo
     let numDivisoes = divAtualTemp - divFinal;
     if(numDivisoes > 0){
       total += numDivisoes * precos[elo];
     }
 
-    // Se houver próximo elo, contar a primeira divisão dele
     if(i < eloIndexDesejado){
       total += precos[ordem[i+1]];
     }
 
-    divAtualTemp = 4; // próximo elo sempre começa da IV
+    divAtualTemp = 4;
   }
 
-  document.getElementById("resultado").innerText = "Preço: R$ " + total + ",00";
+  let resultado = document.getElementById("resultado");
+  resultado.innerText = "Preço: R$ " + total + ",00";
+  resultado.classList.add("change");
+  setTimeout(()=> resultado.classList.remove("change"), 300);
 }
 </script>
 
