@@ -251,11 +251,13 @@ function calcular(){
     let elo = ordem[i];
     let divFinal = (i === eloIndexDesejado) ? divDesejada : 1;
 
-    for(let d = divAtualTemp; d >= divFinal; d--){
-      total += precos[elo];
+    // Correção: somar apenas as divisões que o jogador precisa vencer
+    let numDivisoes = divAtualTemp - divFinal;
+    if(numDivisoes > 0){
+      total += numDivisoes * precos[elo];
     }
 
-    divAtualTemp = 4;
+    divAtualTemp = 4; // depois do primeiro elo, as divisões começam de IV
   }
 
   document.getElementById("resultado").innerText = "Preço: R$ " + total + ",00";
