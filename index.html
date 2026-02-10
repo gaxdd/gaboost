@@ -2,10 +2,13 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>GABOOST - Elojob</title>
+<title>GABOOST - Elojob League of Legends</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+
+<!-- Favicon League of Legends -->
+<link rel="icon" href="https://static.wikia.nocookie.net/leagueoflegends/images/3/3d/League_of_Legends_icon.png" type="image/png">
 
 <style>
 body{
@@ -49,6 +52,13 @@ h1{
   text-align:center;
   color:#ffd36a;
   font-weight:800;
+  margin-bottom:5px;
+}
+
+.subtitle{
+  text-align:center;
+  font-size:12px;
+  opacity:0.7;
   margin-bottom:5px;
 }
 
@@ -147,8 +157,11 @@ button:hover{
       <img src="img/logo-gaboost.png" alt="Logo Gaboost">
     </div>
 
+    <!-- Indicação de League of Legends -->
+    <p class="subtitle">📌 Serviço exclusivo para League of Legends</p>
+
     <h1>GABOOST</h1>
-    <p>Elojob Solo Queue • Seguro • Rápido</p>
+    <p>League of Legends • Elojob Solo Queue • Seguro • Rápido</p>
 
     <label>Elo atual</label>
     <select id="eloAtual">
@@ -223,7 +236,6 @@ function calcular(){
   let eloDesejado = document.getElementById("eloDesejado").value;
   let divDesejada = parseInt(document.getElementById("divDesejada").value);
 
-  // Validação básica
   if(ordem.indexOf(eloDesejado) < ordem.indexOf(eloAtual) ||
      (eloAtual === eloDesejado && divDesejada > divAtual)) {
     alert("Seleção inválida: o elo desejado não pode ser menor que o atual.");
@@ -235,17 +247,15 @@ function calcular(){
   let eloIndexDesejado = ordem.indexOf(eloDesejado);
   let divAtualTemp = divAtual;
 
-  // Percorre cada elo
   for(let i = eloIndexAtual; i <= eloIndexDesejado; i++){
     let elo = ordem[i];
     let divFinal = (i === eloIndexDesejado) ? divDesejada : 1;
 
-    // Soma cada divisão do elo atual até a final
     for(let d = divAtualTemp; d >= divFinal; d--){
       total += precos[elo];
     }
 
-    divAtualTemp = 4; // depois do primeiro elo, as divisões começam sempre de IV
+    divAtualTemp = 4;
   }
 
   document.getElementById("resultado").innerText = "Preço: R$ " + total + ",00";
