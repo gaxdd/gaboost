@@ -1,165 +1,186 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>GABOOST - Elojob Solo</title>
+<meta charset="UTF-8">
+<title>GABOOST - Elojob</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: url("https://ddragon.leagueoflegends.com/cdn/img/champion/splash/KogMaw_0.jpg") no-repeat center center fixed;
-      background-size: cover;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
 
-    .card {
-      background: rgba(10, 20, 60, 0.95);
-      padding: 25px;
-      border-radius: 16px;
-      width: 340px;
-      color: #fff;
-      box-shadow: 0 0 25px rgba(0,255,255,0.4);
-    }
+<style>
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:url('https://ddragon.leagueoflegends.com/cdn/img/champion/splash/KogMaw_0.jpg') no-repeat center center fixed;
+  background-size:cover;
+  color:#fff;
+}
 
-    h1 {
-      text-align: center;
-      color: #ffd166;
-      margin-bottom: 5px;
-    }
+.overlay{
+  background:rgba(8,12,30,.85);
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
 
-    p.sub {
-      text-align: center;
-      font-size: 14px;
-      margin-bottom: 20px;
-      color: #cde;
-    }
+.card{
+  background:linear-gradient(135deg,#0a1b4d,#122b7a);
+  border-radius:20px;
+  padding:30px;
+  width:100%;
+  max-width:420px;
+  box-shadow:0 0 25px rgba(0,200,255,.6);
+}
 
-    label {
-      font-size: 14px;
-      margin-top: 10px;
-      display: block;
-    }
+h1{
+  text-align:center;
+  color:#ffd36a;
+  font-weight:800;
+  margin-bottom:5px;
+}
 
-    select {
-      width: 100%;
-      padding: 10px;
-      border-radius: 8px;
-      border: none;
-      margin-top: 5px;
-      font-size: 14px;
-    }
+p{
+  text-align:center;
+  font-size:14px;
+  opacity:.9;
+}
 
-    button {
-      width: 100%;
-      margin-top: 18px;
-      padding: 12px;
-      background: #00b4ff;
-      border: none;
-      border-radius: 10px;
-      font-size: 16px;
-      font-weight: bold;
-      color: #fff;
-      cursor: pointer;
-    }
+label{
+  display:block;
+  margin-top:15px;
+  font-size:14px;
+}
 
-    button:hover {
-      background: #0095d9;
-    }
+select{
+  width:100%;
+  padding:10px;
+  border-radius:10px;
+  border:none;
+  margin-top:5px;
+}
 
-    .preco {
-      text-align: center;
-      font-size: 20px;
-      margin-top: 15px;
-      color: #00ffcc;
-      font-weight: bold;
-    }
+button{
+  width:100%;
+  margin-top:20px;
+  padding:14px;
+  border:none;
+  border-radius:14px;
+  font-size:18px;
+  font-weight:700;
+  background:linear-gradient(90deg,#00c6ff,#0072ff);
+  color:#fff;
+  cursor:pointer;
+}
 
-    .tabela {
-      margin-top: 20px;
-      font-size: 14px;
-    }
+.price{
+  margin-top:15px;
+  text-align:center;
+  font-size:22px;
+  font-weight:700;
+  color:#00ffcc;
+}
 
-    .tabela h3 {
-      text-align: center;
-      color: #ffd166;
-      margin-bottom: 8px;
-    }
+.table{
+  margin-top:20px;
+  font-size:14px;
+}
 
-    .tabela small {
-      display: block;
-      text-align: center;
-      margin-bottom: 10px;
-      color: #aad;
-    }
+.table h3{
+  text-align:center;
+  color:#ffd36a;
+  margin-bottom:5px;
+}
 
-    .linha {
-      display: flex;
-      justify-content: space-between;
-      margin: 4px 0;
-    }
-  </style>
+.table small{
+  display:block;
+  text-align:center;
+  opacity:.8;
+  margin-bottom:10px;
+}
+
+.table div{
+  display:flex;
+  justify-content:space-between;
+  padding:3px 0;
+}
+
+.whatsapp{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  background:#25D366;
+  color:#fff;
+  padding:15px 20px;
+  border-radius:50px;
+  font-weight:700;
+  text-decoration:none;
+  box-shadow:0 0 15px rgba(0,0,0,.4);
+}
+</style>
 </head>
 
 <body>
+<div class="overlay">
+  <div class="card">
+    <h1>GABOOST</h1>
+    <p>Elojob Solo Queue • Seguro • Rápido</p>
 
-<div class="card">
-  <h1>GABOOST</h1>
-  <p class="sub">Elojob Solo Queue • Seguro • Rápido</p>
+    <label>Elo atual</label>
+    <select id="eloAtual">
+      <option value="Ferro">Ferro</option>
+      <option value="Bronze">Bronze</option>
+      <option value="Prata">Prata</option>
+      <option value="Ouro">Ouro</option>
+      <option value="Platina">Platina</option>
+    </select>
 
-  <label>Elo atual</label>
-  <select id="eloAtual">
-    <option>Ferro</option>
-    <option>Bronze</option>
-    <option>Prata</option>
-    <option>Ouro</option>
-    <option>Platina</option>
-  </select>
+    <label>Divisão atual</label>
+    <select id="divAtual">
+      <option value="4">IV</option>
+      <option value="3">III</option>
+      <option value="2">II</option>
+      <option value="1">I</option>
+    </select>
 
-  <label>Divisão atual</label>
-  <select id="divAtual">
-    <option value="4">IV</option>
-    <option value="3">III</option>
-    <option value="2">II</option>
-    <option value="1">I</option>
-  </select>
+    <label>Elo desejado</label>
+    <select id="eloDesejado">
+      <option value="Bronze">Bronze</option>
+      <option value="Prata">Prata</option>
+      <option value="Ouro">Ouro</option>
+      <option value="Platina">Platina</option>
+      <option value="Esmeralda">Esmeralda</option>
+    </select>
 
-  <label>Elo desejado</label>
-  <select id="eloDesejado" onchange="travarEsmeralda()">
-    <option>Bronze</option>
-    <option>Prata</option>
-    <option>Ouro</option>
-    <option>Platina</option>
-    <option>Esmeralda</option>
-  </select>
+    <label>Divisão desejada</label>
+    <select id="divDesejada">
+      <option value="4">IV</option>
+      <option value="3">III</option>
+      <option value="2">II</option>
+      <option value="1">I</option>
+    </select>
 
-  <label>Divisão desejada</label>
-  <select id="divDesejada">
-    <option value="4">IV</option>
-    <option value="3">III</option>
-    <option value="2">II</option>
-    <option value="1">I</option>
-  </select>
+    <button onclick="calcular()">Calcular preço</button>
+    <div class="price" id="resultado">Preço: R$ 0,00</div>
 
-  <button onclick="calcularPreco()">Calcular preço</button>
+    <div class="table">
+      <h3>Tabela de preços GABOOST</h3>
+      <small>Valores cobrados por divisão vencida</small>
 
-  <div class="preco" id="resultado">Preço: R$ 0,00</div>
-
-  <div class="tabela">
-    <h3>Tabela de preços GABOOST</h3>
-    <small>Valores cobrados por divisão vencida</small>
-
-    <div class="linha"><span>Ferro</span><span>R$ 5</span></div>
-    <div class="linha"><span>Bronze</span><span>R$ 6</span></div>
-    <div class="linha"><span>Prata</span><span>R$ 7</span></div>
-    <div class="linha"><span>Ouro</span><span>R$ 9</span></div>
-    <div class="linha"><span>Platina</span><span>R$ 12</span></div>
-    <div class="linha"><span>Esmeralda</span><span>R$ 15</span></div>
+      <div><span>Ferro</span><span>R$ 5</span></div>
+      <div><span>Bronze</span><span>R$ 6</span></div>
+      <div><span>Prata</span><span>R$ 7</span></div>
+      <div><span>Ouro</span><span>R$ 9</span></div>
+      <div><span>Platina</span><span>R$ 12</span></div>
+      <div><span>Esmeralda</span><span>R$ 15</span></div>
+    </div>
   </div>
 </div>
+
+<a class="whatsapp" href="https://wa.me/5519996898928" target="_blank">
+WhatsApp
+</a>
 
 <script>
 const precos = {
@@ -171,48 +192,28 @@ const precos = {
   Esmeralda: 15
 };
 
-const elos = ["Ferro", "Bronze", "Prata", "Ouro", "Platina", "Esmeralda"];
+const ordem = ["Ferro","Bronze","Prata","Ouro","Platina","Esmeralda"];
 
-function travarEsmeralda() {
-  const eloDesejado = document.getElementById("eloDesejado").value;
-  const divDesejada = document.getElementById("divDesejada");
+function calcular(){
+  let eloAtual = document.getElementById("eloAtual").value;
+  let divAtual = parseInt(document.getElementById("divAtual").value);
+  let eloDesejado = document.getElementById("eloDesejado").value;
+  let divDesejada = parseInt(document.getElementById("divDesejada").value);
 
-  if (eloDesejado === "Esmeralda") {
-    divDesejada.value = "4";
-    divDesejada.disabled = true;
-  } else {
-    divDesejada.disabled = false;
+  if(eloDesejado === "Esmeralda"){
+    divDesejada = 4;
   }
-}
-
-function calcularPreco() {
-  const eloAtual = document.getElementById("eloAtual").value;
-  const divAtual = parseInt(document.getElementById("divAtual").value);
-
-  const eloDesejado = document.getElementById("eloDesejado").value;
-  const divDesejada = parseInt(document.getElementById("divDesejada").value);
 
   let total = 0;
 
-  let inicio = elos.indexOf(eloAtual);
-  let fim = elos.indexOf(eloDesejado);
-
-  if (fim < inicio) {
-    alert("O elo desejado deve ser maior que o atual");
-    return;
-  }
-
-  for (let i = inicio; i <= fim; i++) {
-    let divs = 4;
-
-    if (i === inicio) divs = divAtual;
-    if (i === fim) divs = divDesejada;
-
-    total += divs * precos[elos[i]];
+  for(let i = ordem.indexOf(eloAtual); i < ordem.indexOf(eloDesejado); i++){
+    let elo = ordem[i];
+    let divs = (elo === eloAtual) ? divAtual : 4;
+    total += divs * precos[elo];
   }
 
   document.getElementById("resultado").innerText =
-    "Preço: R$ " + total.toFixed(2).replace(".", ",");
+    "Preço: R$ " + total + ",00";
 }
 </script>
 
