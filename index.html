@@ -131,13 +131,13 @@
     </select>
 
     <label>Elo desejado</label>
-    <select id="eloDesejado">
-      <option value="2">Bronze</option>
-      <option value="3">Prata</option>
-      <option value="4">Ouro</option>
-      <option value="5">Platina</option>
-      <option value="6">Esmeralda</option>
-    </select>
+    <select id="eloDesejado" onchange="ajustarDivEsmeralda()">
+  <option value="2">Bronze</option>
+  <option value="3">Prata</option>
+  <option value="4">Ouro</option>
+  <option value="5">Platina</option>
+  <option value="6">Esmeralda</option>
+</select>
 
     <label>Divisão desejada</label>
     <select id="divDesejada">
@@ -151,14 +151,15 @@
     <div class="price" id="resultado"></div>
 
     <div style="margin-top:20px;font-size:14px;text-align:center;">
-      <h3 style="margin-bottom:10px;color:#f5c97a;">Tabela de preços GABOOST</h3>
+      <h3 style="margin-bottom:10px;color:#f5c97a;">Tabela de preços GABOOST (por divisão)</h3>
+<p style="font-size:12px;opacity:0.9;margin-bottom:10px;">💡 O valor final é calculado somando cada divisão vencida, do elo atual até o elo desejado.</p>
       <table style="width:100%;border-collapse:collapse;">
-        <tr><td>Ferro</td><td>R$ 5</td></tr>
-        <tr><td>Bronze</td><td>R$ 6</td></tr>
-        <tr><td>Prata</td><td>R$ 7</td></tr>
-        <tr><td>Ouro</td><td>R$ 9</td></tr>
-        <tr><td>Platina</td><td>R$ 12</td></tr>
-        <tr><td>Esmeralda</td><td>R$ 15</td></tr>
+        <tr><td>Ferro</td><td>R$ 5 por divisão</td></tr>
+        <tr><td>Bronze</td><td>R$ 6 por divisão</td></tr>
+        <tr><td>Prata</td><td>R$ 7 por divisão</td></tr>
+        <tr><td>Ouro</td><td>R$ 9 por divisão</td></tr>
+        <tr><td>Platina</td><td>R$ 12 por divisão</td></tr>
+        <tr><td>Esmeralda</td><td>R$ 15 por divisão</td></tr>
       </table>
     </div>
   </div>
@@ -167,19 +168,51 @@
 <a class="whatsapp" href="https://wa.me/5519996898928" target="_blank">WhatsApp</a>
 
 <script>
-function calcular() {
+function ajustarDivEsmeralda() {
+  const eloDesejado = document.getElementById('eloDesejado').value;
+  const divDesejada = document.getElementById('divDesejada');
+
+  if (eloDesejado === '6') {
+    divDesejada.value = '4';
+    divDesejada.disabled = true;
+  } else {
+    divDesejada.disabled = false;
+  }
+}
+
+function calcular() {) {
   const eloAtual = parseInt(document.getElementById('eloAtual').value);
   const divAtual = parseInt(document.getElementById('divAtual').value);
   const eloDesejado = parseInt(document.getElementById('eloDesejado').value);
   const divDesejada = parseInt(document.getElementById('divDesejada').value);
 
-  const pontosAtual = eloAtual * 4 - divAtual;
-  const pontosDesejado = eloDesejado * 4 - divDesejada;
+  // preço por DIVISÃO
+  const precoDivisao = {
+    1: 5,  // Ferro
+    2: 6,  // Bronze
+    3: 7,  // Prata
+    4: 9,  // Ouro
+    5: 12, // Platina
+    6: 15  // Esmeralda
+  };
+
+  const pontosAtual = (eloAtual - 1) * 4 + (4 - divAtual);
+  const pontosDesejado = (eloDesejado - 1) * 4 + (4 - divDesejada);
 
   if (pontosDesejado <= pontosAtual) {
-    document.getElementById('resultado').innerText = 'Elo inválido';
+    document.getElementById('resultado').innerText = 'Seleção inválida';
     return;
   }
+
+  let total = 0;
+
+  for (let p = pontosAtual; p < pontosDesejado; p++) {
+    const eloBase = Math.floor(p / 4) + 1;
+    total += precoDivisao[eloBase];
+  }
+
+  document.getElementById('resultado').innerText = `Preço: R$ ${total},00`;
+}
 
   const diferenca = pontosDesejado - pontosAtual;
   const preco = diferenca * 35;
