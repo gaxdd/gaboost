@@ -34,6 +34,18 @@ body{
   box-shadow:0 0 25px rgba(0,200,255,.6);
 }
 
+/* LOGO */
+.logo{
+  display:flex;
+  justify-content:center;
+  margin-bottom:10px;
+}
+
+.logo img{
+  width:140px;
+  max-width:100%;
+}
+
 h1{
   text-align:center;
   color:#ffd36a;
@@ -124,6 +136,12 @@ button{
 <body>
 <div class="overlay">
   <div class="card">
+
+    <!-- LOGO -->
+    <div class="logo">
+      <img src="img/logo-gaboost.png" alt="Logo Gaboost">
+    </div>
+
     <h1>GABOOST</h1>
     <p>Elojob Solo Queue • Seguro • Rápido</p>
 
@@ -198,11 +216,6 @@ function calcular(){
   let eloAtual = document.getElementById("eloAtual").value;
   let divAtual = parseInt(document.getElementById("divAtual").value);
   let eloDesejado = document.getElementById("eloDesejado").value;
-  let divDesejada = parseInt(document.getElementById("divDesejada").value);
-
-  if(eloDesejado === "Esmeralda"){
-    divDesejada = 4;
-  }
 
   let total = 0;
 
