@@ -157,7 +157,6 @@ button:hover{
       <img src="img/logo-gaboost.png" alt="Logo Gaboost">
     </div>
 
-    <!-- Indicação de League of Legends -->
     <p class="subtitle">📌 Serviço exclusivo para League of Legends</p>
 
     <h1>GABOOST</h1>
@@ -228,7 +227,7 @@ const precos = {
   Esmeralda: 15
 };
 
-const ordem = ["Ferro","Bronze","Prata","Ouro","Platina","Esmeralda"];
+const ordem = ["Ferro","Bronze","Prata","Ouro","Platina"];
 
 function calcular(){
   let eloAtual = document.getElementById("eloAtual").value;
@@ -246,18 +245,24 @@ function calcular(){
   let total = 0;
   let eloIndexAtual = ordem.indexOf(eloAtual);
   let eloIndexDesejado = ordem.indexOf(eloDesejado);
+  let divAtualTemp = divAtual;
 
   for(let i = eloIndexAtual; i <= eloIndexDesejado; i++){
     let elo = ordem[i];
+    let divFinal = (i === eloIndexDesejado) ? divDesejada : 1;
 
-    // Define início e fim das divisões
-    let inicioDiv = (i === eloIndexAtual) ? divAtual : 4; // primeiro elo começa na divisão atual
-    let fimDiv = (i === eloIndexDesejado) ? divDesejada : 1; // último elo termina na divisão desejada
-
-    // Soma todas as divisões percorridas
-    for(let d = inicioDiv; d >= fimDiv; d--){
-      total += precos[elo];
+    // Divisões vencidas dentro do mesmo elo
+    let numDivisoes = divAtualTemp - divFinal;
+    if(numDivisoes > 0){
+      total += numDivisoes * precos[elo];
     }
+
+    // Se houver próximo elo, contar a primeira divisão dele
+    if(i < eloIndexDesejado){
+      total += precos[ordem[i+1]];
+    }
+
+    divAtualTemp = 4; // próximo elo sempre começa da IV
   }
 
   document.getElementById("resultado").innerText = "Preço: R$ " + total + ",00";
