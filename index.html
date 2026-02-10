@@ -34,7 +34,6 @@ body{
   box-shadow:0 0 25px rgba(0,200,255,.6);
 }
 
-/* LOGO */
 .logo{
   display:flex;
   justify-content:center;
@@ -144,7 +143,6 @@ button:hover{
 <div class="overlay">
   <div class="card">
 
-    <!-- LOGO -->
     <div class="logo">
       <img src="img/logo-gaboost.png" alt="Logo Gaboost">
     </div>
@@ -225,6 +223,7 @@ function calcular(){
   let eloDesejado = document.getElementById("eloDesejado").value;
   let divDesejada = parseInt(document.getElementById("divDesejada").value);
 
+  // Validação básica
   if(ordem.indexOf(eloDesejado) < ordem.indexOf(eloAtual) ||
      (eloAtual === eloDesejado && divDesejada > divAtual)) {
     alert("Seleção inválida: o elo desejado não pode ser menor que o atual.");
@@ -232,19 +231,24 @@ function calcular(){
   }
 
   let total = 0;
+  let eloIndexAtual = ordem.indexOf(eloAtual);
+  let eloIndexDesejado = ordem.indexOf(eloDesejado);
+  let divAtualTemp = divAtual;
 
-  for(let i = ordem.indexOf(eloAtual); i <= ordem.indexOf(eloDesejado); i++){
+  // Percorre cada elo
+  for(let i = eloIndexAtual; i <= eloIndexDesejado; i++){
     let elo = ordem[i];
-    let inicioDiv = (i === ordem.indexOf(eloAtual)) ? divAtual : 4;
-    let fimDiv = (i === ordem.indexOf(eloDesejado)) ? divDesejada : 1;
+    let divFinal = (i === eloIndexDesejado) ? divDesejada : 1;
 
-    for(let d = inicioDiv; d >= fimDiv; d--){
+    // Soma cada divisão do elo atual até a final
+    for(let d = divAtualTemp; d >= divFinal; d--){
       total += precos[elo];
     }
+
+    divAtualTemp = 4; // depois do primeiro elo, as divisões começam sempre de IV
   }
 
-  document.getElementById("resultado").innerText =
-    "Preço: R$ " + total + ",00";
+  document.getElementById("resultado").innerText = "Preço: R$ " + total + ",00";
 }
 </script>
 
